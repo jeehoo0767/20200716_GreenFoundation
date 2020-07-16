@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="wrap">
+        <header>
+            <div id="header-logo">
+                <img src="images/A/Logo_Green.png" alt="a">
+            </div>
+            <div id="menu-area">
+                <ul id="main-menu">
+                    <li class="main"><a href="" class="main-a">menu</a>
+                        <ul class="sub-menu">
+                            <li><a href="">sub menu</a></li>
+                            <li><a href="">sub menu</a></li>
+                            <li><a href="">sub menu</a></li>
+                            <li><a href="">sub menu</a></li>
+                        </ul>
+                    <li class="main"><a href="">menu</a><a href="" class="main-a"></a>
+                        <ul class="sub-menu">
+                            <li><a href="">sub menu</a></li>
+                            <li><a href="">sub menu</a></li>
+                            <li><a href="">sub menu</a></li>
+                            <li><a href="">sub menu</a></li>
+                        </ul>
+                    <li class="main"><a href="" class="main-a">menu</a>
+                        <ul class="sub-menu">
+                            <li><a href="">sub menu</a></li>
+                            <li><a href="">sub menu</a></li>
+                            <li><a href="">sub menu</a></li>
+                            <li><a href="">sub menu</a></li>
+                        </ul>
+                    <li class="main"><a href="" class="main-a">menu</a>
+                        <ul class="sub-menu">
+                            <li><a href="">sub menu</a></li>
+                            <li><a href="">sub menu</a></li>
+                            <li><a href="">sub menu</a></li>
+                            <li><a href="">sub menu</a></li>
+                        </ul>
+                </ul>
+            </div>
+        </header>
+        <section>
+            <div class="slider">
+                <img src="images/B/slideimg1.jpg" alt="a" class="s">
+                <img src="images/B/slideimg2.png" alt="a" class="s">
+                <img src="images/B/slideimg3.jpg" alt="a" class="s">
+            </div>
+        </section>
+        <aside>
+            <div id="notice">
+                <div id="tap-notice">공지사항</div>
+                <ul id="notice-wrap">
+                    <li>
+                        <div>2019년 후원할 후원자를 찾습니다</div>
+                        <div>2018-10-19</div>
+                    </li>
+                    <li>
+                        <div>2019년 후원할 후원자를 찾습니다</div>
+                        <div>2018-10-19</div>
+                    </li>
+                    <li>
+                        <div>2019년 후원할 후원자를 찾습니다</div>
+                        <div>2018-10-19</div>
+                    </li>
+                    <li>
+                        <div>2019년 후원할 후원자를 찾습니다</div>
+                        <div>2018-10-19</div>
+                    </li>
+                </ul>
+            </div>
+            <div id="gallary">
+                <img src="images/C/IUQIMAQMYU_2019043010170137.jpg" alt="a">
+            </div>
+            <div id="banner"><img src="images/C/YUIOOIWKW_20160907210523.png" alt="a"></div>
+        </aside>
+        <footer>
+            <div id="footer-logo">
+                <img src="images/A/Logo_Green_Bottom.png" alt="a">
+            </div>
+            <div id="footer-copy">
+                <span>전화번호 : (051) 709-0700 사업자등록번호 : 605-82-05242 대표자 : 김영수<br>
+                    copyright(c) 2010 Busan Infrastructure Corporation. all rights reserved
+                </span>
+            </div>
+            <div id="footer-family"></div>
+        </footer>
+    </div>
+
+
+
+    <!--wrap-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $("ul#main-menu>li").mouseover(function() {
+            $(this).children("ul").stop().slideDown();
+        });
+
+        $("ul#main-menu>li").mouseout(function() {
+            $(this).children("ul").stop().slideUp();
+        });
+
+        $(function() {
+            var $slider = $('.slider'),
+                $firstSlide = $slider.find('.s').first() // 첫번째 슬라이드
+                .stop(true).animate({
+                    'opacity': 1
+                }, 200); // 첫번째 슬라이드만 보이게 하기
+
+            function PrevSlide() { // 이전버튼 함수
+                var $lastSlide = $slider.find('.s').last() //마지막 슬라이드
+                    .prependTo($slider); //마지막 슬라이드를 맨 앞으로 보내기
+                $secondSlide = $slider.find('.s').eq(1)
+                    //두 번째 슬라이드 구하기
+                    .stop(true).animate({
+                        'opacity': 0
+                    }, 400); //밀려난 두 번째 슬라이드는 fadeOut 시키고
+                $firstSlide = $slider.find('.s').first() //맨 처음 슬라이드 다시 구하기
+                    .stop(true).animate({
+                        'opacity': 1
+                    }, 400);
+                //새로 들어온 첫 번째 슬라이드는 fadeIn 시키기
+            }
+
+            function NextSlide() { // 다음 버튼 함수
+                $firstSlide = $slider.find('.s').first() // 첫 번째 슬라이드
+                    .appendTo($slider); // 맨 마지막으로 보내기
+                var $lastSlide = $slider.find('.s').last() // 맨 마지막으로 보낸 슬라이드
+                    .stop(true).animate({
+                        'opacity': 0
+                    }, 400); // fadeOut시키기
+                $firstSlide = $slider.find('.s').first()
+                    // 맨 처음 슬라이드
+                    .stop(true).animate({
+                        'opacity': 1
+                    }, 400);
+                // fadeIn 시키기
+            }
+
+
+            setInterval(NextSlide, 2000); //자동 슬라이드 설정
+
+        });
+
+    </script>
+    <script>
+        var a = document.getElementById("tap-notice");
+        console.dir(a);
+
+    </script>
+</body>
+
+</html>
